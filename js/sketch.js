@@ -25,14 +25,13 @@ function draw() {
       let index = getIndex(x, y);
 
       if (distSq(video, prev, index) > DIST_THRESHOLD * DIST_THRESHOLD) {    
-        setColor(pixels, index, 255, 255, 255);  
+        setColor(index, 255, 255, 255);  
       } else {
-        setColor(pixels, index, 0, 0, 0);
+        setColor(index, 0, 0, 0);
       }
-
     }
   }
-  
+
   updatePixels();
   prev.copy(video, 0, 0, width, height, 0, 0, width, height);
 }
@@ -46,16 +45,16 @@ function getIndex(x, y) {
   return (x + y * width) * 4;
 }
 
-function getColor(ps, index) {
+function getColor(pixels, index) {
   return {
-    r: ps[index],
-    g: ps[index + 1],
-    b: ps[index + 2],
-    a: ps[index + 3]
+    r: pixels[index],
+    g: pixels[index + 1],
+    b: pixels[index + 2],
+    a: pixels[index + 3]
   };
 }
 
-function setColor(pixels, index, r, g, b, a = 255) {
+function setColor(index, r, g, b, a = 255) {
   pixels[index] = r;
   pixels[index + 1] = g;
   pixels[index + 2] = b;
